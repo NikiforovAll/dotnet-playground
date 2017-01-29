@@ -1,1 +1,1 @@
-# ASP.NET MVC 5 
+# ASP.NET MVC Core  
