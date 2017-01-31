@@ -1,1 +1,4 @@
-#.NET
+#.NET:
+[
+    INotifyPropertyChanged
+]
