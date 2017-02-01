@@ -1,4 +1,5 @@
 #.NET:
 [
-    INotifyPropertyChanged
+    INotifyPropertyChanged,
+    ExceptionHandlingx
 ]
