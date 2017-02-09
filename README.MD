@@ -1,5 +1,6 @@
 #.NET:
 [
     INotifyPropertyChanged,
-    ExceptionHandlingx
+    ExceptionHandling,
+    AsyncProgramming
 ]
