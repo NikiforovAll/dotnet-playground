@@ -10,6 +10,15 @@ namespace AsyncProgramming
     {
         static void Main(string[] args)
         {
+            // async context 
+            Task.Run( async () =>
+                {
+                    var test = new AsyncTest2();
+                    //await test.TasksUsingThreadPool();
+                    //await test.TaskContinuation();
+                    test.TaskCancelation();
+                }
+            ).GetAwaiter().GetResult();
         }
     }
 }
