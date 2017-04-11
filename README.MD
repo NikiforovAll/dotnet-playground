@@ -2,5 +2,6 @@
 [
     INotifyPropertyChanged,
     ExceptionHandling,
-    AsyncProgramming
+    AsyncProgramming,
+    IO
 ]
