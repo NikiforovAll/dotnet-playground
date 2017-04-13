@@ -1,7 +1,8 @@
-#.NET:
+# .NET:
 [
-    INotifyPropertyChanged,
-    ExceptionHandling,
-    AsyncProgramming,
-    IO
+    * INotifyPropertyChanged,
+    * ExceptionHandling,
+    * AsyncProgramming,
+    * IO
+    * Security
 ]
