@@ -12,6 +12,7 @@ namespace TcpCustomServer
         public int PortNumber { get; } = 8800;
         public TcpListener TcpListener { get; private set; }
         public SessionManager SessionManager { get; private set; }
+
         public async Task StartServerAsync()
         {
             try
@@ -19,11 +20,9 @@ namespace TcpCustomServer
                 TcpListener = new TcpListener(IPAddress.Any, PortNumber);
                 SessionManager = new SessionManager();
                 TcpListener.Start();
-
-
                 while (true)
                 {
-                    TcpClient client = await TcpListener.AcceptTcpClientAsync();
+                    await ProcessClientRequest();
                 }
             }
             catch (Exception ex)
