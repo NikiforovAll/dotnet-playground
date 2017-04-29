@@ -10,7 +10,13 @@ namespace ADO
     {
         static void Main(string[] args)
         {
-            var sample = new ADOSample();
+            Task.Run(async () =>
+            {
+                var sample = new ADOSample();
+                ////Console.WriteLine(await sample.ExecuteScalar());
+                (await sample.ExecuteReader(771)).ForEach(el => Console.WriteLine(el));
+            }
+           ).GetAwaiter().GetResult();
         }
     }
 }

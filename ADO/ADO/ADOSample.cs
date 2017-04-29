@@ -12,7 +12,7 @@ namespace ADO
         //TBD: consider moving queries to external source and initialize as dictionary from source
         private Dictionary<string, string> _querySource = new Dictionary<string, string>
         {
-            [nameof(ExecuteScalar)] = "SELET COUNT(*) FROM Production.Product",
+            [nameof(ExecuteScalar)] = "SELECT COUNT(*) FROM Production.Product",
 
             [nameof(ExecuteReader)] = @"SELECT Prod.ProductID, Prod.Name, Prod.StandardCost, Prod.ListPrice,
                                         CostHistory.StartDate, CostHistory.EndDate, CostHistory.StandardCost
@@ -53,9 +53,9 @@ namespace ADO
                 SqlCommand command = connection.CreateCommand();
                 command.CommandText = query;
                 connection.Open();
-                resultRaw = await command.ExecuteScalarAsync() as string;
+                resultRaw = (await command.ExecuteScalarAsync()).ToString();
             }
-            return int.Parse(String.IsNullOrWhiteSpace(resultRaw) ? resultRaw : "-1");
+            return int.Parse(!String.IsNullOrWhiteSpace(resultRaw) ? resultRaw : "-1");
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace ADO
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.Add(
-                    new SqlParameter("ProductionId", SqlDbType.Int)
+                    new SqlParameter("ProductId", SqlDbType.Int)
                     {
                         Value = productId
                     }
@@ -84,13 +84,17 @@ namespace ADO
                         string name = reader["Name"] as string;
                         DateTime from = (DateTime)reader["StartDate"];
                         DateTime? to = (DateTime?)reader["EndDate"];
-                        productInfo.Add($"{id}-{name}-{from: yyyy-MM-dd}--{to: yyyy-MM-dd}");
+                        productInfo.Add($"{id}/{name}/{from: yyyy-MM-dd} --{to: yyyy-MM-dd}");
                     }
                 }
             }
             return productInfo;
         }
 
+        /// <summary>
+        ///     Example 3
+        /// </summary>
+        /// <returns></returns>
         private async Task TransactionSample()
         {
             using (var connection = new SqlConnection(GetConnectionString()))
