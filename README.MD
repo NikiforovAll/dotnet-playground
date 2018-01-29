@@ -6,5 +6,5 @@
 * [Networking](../../tree/master/Networking)
 * [Security](../../tree/master/Security)
 * [ADO.NET](../../tree/master/ADO)
-# ASP.NET MVC Core  
+# ASP.NET Core  
 * [IServer](../../tree/master/IServer)
